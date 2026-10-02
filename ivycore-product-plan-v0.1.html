@@ -1,0 +1,976 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#203d30"><meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Ivycore 제품 기획 초안. 학생·학부모·선생님·어드민의 기능, 학습 흐름, 권한, 첫 출시 범위와 검증 기준을 읽어보세요.">
+<title>Ivycore 제품 기획 | 학생·학부모·선생님·어드민</title>
+<style>
+:root{--paper:#f8f7f3;--white:#fffefa;--forest:#203d30;--ink:#142c22;--muted:#506357;--line:#d5ddd3;--tint:#e9efe5;--body:Arial,"Apple SD Gothic Neo","Noto Sans CJK KR","Malgun Gothic",sans-serif;--display:"AppleMyungjo","Noto Serif KR","Batang",serif;--radius:6px;--space:24px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.85 var(--body);-webkit-font-smoothing:antialiased}::selection{background:#cddcc9;color:var(--ink)}a{color:var(--forest);text-underline-offset:4px}a:hover{text-decoration-thickness:2px}button{font:inherit;cursor:pointer}a:focus-visible,button:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid #436b4b;outline-offset:4px;border-radius:3px}h1,h2,h3,h4{color:var(--forest);line-height:1.5;text-wrap:balance;word-break:keep-all;overflow-wrap:anywhere}p,li,td{word-break:keep-all;overflow-wrap:anywhere}p{margin:0 0 18px}strong{font-weight:700}code{font:0.88em/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--tint);padding:2px 5px;border-radius:3px;overflow-wrap:anywhere}ul,ol{padding-left:24px;margin:12px 0 24px}li{padding-left:4px;margin-bottom:10px}svg{width:18px;height:18px;flex:none}button svg{vertical-align:middle}a,button,summary{touch-action:manipulation}.skip-link{position:fixed;top:-80px;left:16px;z-index:30;background:var(--forest);color:white;padding:10px 16px}.skip-link:focus{top:12px}
+.topbar{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}.topbar-inner{max-width:1260px;margin:auto;min-height:76px;padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:inline-flex;align-items:center;min-height:44px}.brand img{width:132px;height:44px;object-fit:contain}.topbar-actions{display:flex;align-items:center;gap:24px;font-size:14px}.topbar-actions a{min-height:44px;display:inline-flex;align-items:center}.print-button{min-height:44px;border:1px solid var(--line);background:transparent;border-radius:var(--radius);color:var(--forest);padding:7px 12px;display:inline-flex;align-items:center;gap:8px}.print-button:hover{background:var(--tint)}.print-button[hidden]{display:none}
+.layout{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:244px minmax(0,1fr);gap:0;padding:0 28px}.sidebar{padding:42px 26px 32px 0}.desktop-toc{position:sticky;top:102px;max-height:calc(100vh - 130px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#8a9f8d transparent}.toc-title{font-size:14px;font-weight:700;margin:0 0 15px}.toc-list{list-style:none;margin:0;padding:0;line-height:1.5}.toc-list li{padding:0;margin:0}.toc-list a{display:block;padding:9px 10px;margin:1px 0;border-radius:var(--radius);font-size:13px;text-decoration:none;color:var(--muted)}.toc-list a:hover,.toc-list a[aria-current="location"]{color:var(--forest);background:var(--tint)}.toc-back{display:inline-flex;align-items:center;min-height:44px;margin-top:20px;font-size:13px}.document{min-width:0;border-left:1px solid var(--line);padding:44px 0 28px 52px}.document-header{padding-bottom:36px}.document-meta{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;color:var(--muted);font-size:14px;margin-bottom:20px}.draft-label{display:inline-block;background:var(--tint);color:var(--forest);padding:3px 9px;border-radius:var(--radius);font-size:13px}.document-header h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,3.2vw,42px);letter-spacing:-0.025em;margin:0 0 18px;line-height:1.42}.document-header .lede{max-width:670px;color:var(--muted);font-size:18px;line-height:1.8}.role-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.role-links a{display:inline-flex;align-items:center;gap:10px;padding:9px 16px;min-height:46px;border:1px solid #b8cbb7;border-radius:var(--radius);text-decoration:none;font-size:14px;font-weight:600}.role-links a:hover{background:var(--tint)}.mobile-toc{display:none}.document-intro{font-size:14px;color:var(--muted);padding:18px 20px;background:var(--tint);border-radius:var(--radius)}.document-intro p{margin:0}.prose section{padding-top:52px;margin-top:18px;border-top:1px solid var(--line);scroll-margin-top:0}.prose h2{font-family:var(--display);font-size:clamp(24px,2.3vw,30px);letter-spacing:-0.02em;font-weight:600;margin:0 0 24px}.prose h3{font-size:19px;margin:36px 0 14px}.prose h4{font-size:17px;margin:26px 0 12px}.prose>section>p,.prose>section>ul,.prose>section>ol{max-width:75ch}.prose blockquote{margin:24px 0;padding:20px 22px;background:var(--tint);border-radius:var(--radius);font-size:15px}.prose blockquote p{margin:0}.table-wrap{margin:24px 0 28px}.table-scroll{overflow-x:auto;overscroll-behavior-x:contain;border:1px solid var(--line);border-radius:var(--radius);scrollbar-width:thin;scrollbar-color:#8a9f8d var(--tint)}.table-hint{display:none;font-size:12px;color:var(--muted);margin:0 0 7px}table{width:100%;min-width:600px;border-collapse:collapse;font-size:14px;line-height:1.75;background:var(--white)}th,td{padding:15px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}thead th{background:var(--tint);font-weight:700;font-size:13px;color:var(--forest)}tbody td:first-child{font-weight:600;color:var(--forest);width:23%;min-width:126px}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#f1f4ed}th+th,td+td{border-left:1px solid var(--line)}.learning-flow{padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0;margin:22px 0 14px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}.learning-flow li{margin:0;padding:22px;display:flex;gap:16px;border-bottom:1px solid var(--line)}.learning-flow li:nth-child(odd){border-right:1px solid var(--line)}.learning-flow li:nth-last-child(-n+2){border-bottom:0}.flow-number{flex:none;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--forest);color:var(--white);font:14px/1 var(--body);font-variant-numeric:tabular-nums}.learning-flow strong{display:block;font-size:15px;margin-bottom:5px}.learning-flow p{font-size:13px;color:var(--muted);line-height:1.8;margin:0}.flow-return{font-size:13px;color:var(--muted)}.document-footer{margin-top:56px;border-top:1px solid var(--line);padding:26px 0 10px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:18px;align-items:start}.document-footer p{margin:0}.document-footer a{white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:1020px){.layout{grid-template-columns:208px minmax(0,1fr);padding:0 24px}.sidebar{padding-right:18px}.document{padding-left:30px}.topbar-inner{padding-inline:24px}.learning-flow li{padding:18px;gap:12px}}
+@media(max-width:760px){html{scroll-padding-top:86px}.topbar-inner{min-height:64px;padding:8px 20px}.brand img{width:114px;height:40px}.topbar-actions{gap:12px}.topbar-actions>a{display:none}.print-button{font-size:12px;padding:7px 10px}.layout{display:block;padding:0 22px}.sidebar{display:none}.document{border:0;padding:30px 0 22px}.document-header{padding-bottom:25px}.document-header h1{font-size:30px}.document-header .lede{font-size:16px}.document-meta{font-size:12px;gap:8px 12px;margin-bottom:16px}.role-links{gap:8px;margin-top:22px}.role-links a{padding:8px 13px;font-size:13px}.mobile-toc{display:block;border-block:1px solid var(--line);margin-bottom:24px}.mobile-toc summary{min-height:50px;cursor:pointer;display:list-item;font-size:14px;font-weight:600;padding:12px 4px;list-style-position:inside}.mobile-toc nav{padding:0 0 14px}.mobile-toc .toc-list a{padding:12px 8px;font-size:14px}.document-intro{padding:16px;font-size:13px}.prose section{padding-top:35px;margin-top:22px;scroll-margin-top:0}.prose h2{font-size:25px;margin-bottom:20px}.prose h3{font-size:18px;margin-top:28px}.prose p,.prose li{font-size:15px}.prose blockquote{padding:17px;font-size:14px}.table-hint{display:block}table{min-width:590px;font-size:13px}th,td{padding:13px 14px}.table-wrap{margin:21px 0 24px}.learning-flow{grid-template-columns:1fr}.learning-flow li{padding:18px 16px;border-right:0!important}.learning-flow li:nth-last-child(2){border-bottom:1px solid var(--line)}.learning-flow li p{font-size:13px}.learning-flow li strong{font-size:15px}.document-footer{display:block;margin-top:38px;padding-top:22px}.document-footer a{margin-top:12px}ul,ol{padding-left:21px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{@page{size:A4;margin:15mm 12mm}html{scroll-behavior:auto}body{background:white;font-size:10pt;line-height:1.6;color:black}.topbar,.sidebar,.mobile-toc,.role-links,.table-hint,.skip-link,.document-footer a{display:none!important}.layout{display:block;padding:0;max-width:none}.document{padding:0;border:0}.document-header{padding-bottom:16px}.document-header h1{font-size:24pt}.document-header .lede{font-size:11pt}.document-meta{font-size:9pt}.document-intro{font-size:9pt;padding:10px}.prose section{padding-top:22px;margin-top:14px}.prose h2{font-size:17pt;margin-bottom:12px;break-after:avoid}.prose h3{font-size:12pt;break-after:avoid}.prose p,.prose li{font-size:10pt}.table-scroll{overflow:visible;border-radius:0}table{min-width:0;font-size:8pt;table-layout:fixed;line-height:1.55}th,td{padding:7px;min-width:0!important;word-break:normal;overflow-wrap:anywhere}thead{display:table-header-group}tr{break-inside:avoid}.learning-flow{grid-template-columns:1fr 1fr}.learning-flow li{padding:10px;break-inside:avoid}.learning-flow p{font-size:9pt}.prose blockquote{padding:12px}a{color:inherit}.document-footer{font-size:8pt;margin-top:20px}}
+</style>
+</head>
+<body id="top">
+<a class="skip-link" href="#document-content">기획 본문으로 이동</a>
+<header class="topbar"><div class="topbar-inner"><a class="brand" href="#top" aria-label="Ivycore 기획 문서 처음으로"><img src="data:image/webp;base64,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" alt="Ivycore" width="132" height="44"></a><div class="topbar-actions"><a href="https://www.ivycore.study/">랜딩페이지 보기</a><button id="print-plan" class="print-button" type="button" hidden><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8V3h12v5M6 17H3V9h18v8h-3"/><path d="M6 14h12v7H6zM17 11h1"/></svg>인쇄 / PDF 저장</button></div></div></header>
+<div class="layout"><aside class="sidebar" aria-label="문서 목차"><nav class="desktop-toc"><p class="toc-title">문서 목차</p><ol class="toc-list"><li><a href="#section-1">만들 제품과 성공 기준</a></li><li><a href="#section-2">랜딩에서 확인한 약속과 현재 상태</a></li><li><a href="#section-3">초안의 가정</a></li><li><a href="#section-4">네 역할이 연결되는 전체 흐름</a></li><li><a href="#section-5">학생 기획</a></li><li><a href="#section-6">학부모 기획</a></li><li><a href="#section-7">선생님 기획</a></li><li><a href="#section-8">어드민 기획</a></li><li><a href="#section-9">핵심 기능의 상세 규칙</a></li><li><a href="#section-10">권한과 연결 규칙</a></li><li><a href="#section-11">알림·실패·예외 처리</a></li><li><a href="#section-12">첫 출시 범위와 이후 범위</a></li><li><a href="#section-13">필요한 데이터와 현재 코드 활용</a></li><li><a href="#section-14">업무 상태와 구현 순서</a></li><li><a href="#section-15">출시 전 확인할 행동 시나리오</a></li><li><a href="#section-16">파일럿에서 볼 지표</a></li><li><a href="#section-17">상세 기획 전에 확정할 결정</a></li></ol><a class="toc-back" href="#top">문서 처음으로 ↑</a></nav></aside>
+<main id="document-content" class="document" tabindex="-1">
+<header class="document-header"><div class="document-meta"><span class="draft-label">검토용 초안 v0.1</span><span>2026년 10월 2일</span></div><h1>네 역할이 함께 만드는<br>학생의 학습 경로</h1><p class="lede">랜딩페이지의 약속을 실제 제품으로 옮기기 위한 Ivycore 기획.<br>역할별 기능부터 학습 흐름, 첫 출시 범위까지 살펴봅니다.</p><nav class="role-links" aria-label="역할별 기획 바로가기"><a href="#section-5">학생 <span aria-hidden="true">↓</span></a><a href="#section-6">학부모 <span aria-hidden="true">↓</span></a><a href="#section-7">선생님 <span aria-hidden="true">↓</span></a><a href="#section-8">어드민 <span aria-hidden="true">↓</span></a></nav></header>
+<details id="mobile-contents" class="mobile-toc"><summary>전체 목차 · 17개 항목</summary><nav aria-label="모바일 문서 목차"><ol class="toc-list"><li><a href="#section-1">만들 제품과 성공 기준</a></li><li><a href="#section-2">랜딩에서 확인한 약속과 현재 상태</a></li><li><a href="#section-3">초안의 가정</a></li><li><a href="#section-4">네 역할이 연결되는 전체 흐름</a></li><li><a href="#section-5">학생 기획</a></li><li><a href="#section-6">학부모 기획</a></li><li><a href="#section-7">선생님 기획</a></li><li><a href="#section-8">어드민 기획</a></li><li><a href="#section-9">핵심 기능의 상세 규칙</a></li><li><a href="#section-10">권한과 연결 규칙</a></li><li><a href="#section-11">알림·실패·예외 처리</a></li><li><a href="#section-12">첫 출시 범위와 이후 범위</a></li><li><a href="#section-13">필요한 데이터와 현재 코드 활용</a></li><li><a href="#section-14">업무 상태와 구현 순서</a></li><li><a href="#section-15">출시 전 확인할 행동 시나리오</a></li><li><a href="#section-16">파일럿에서 볼 지표</a></li><li><a href="#section-17">상세 기획 전에 확정할 결정</a></li></ol></nav></details>
+<div class="document-intro"><p>이 문서는 랜딩페이지의 약속을 실제 학습 서비스의 기능·사용 흐름·권한·출시 조건으로 전환한다. 기능 우선순위와 운영 방식은 제안이며, 가격·제공 과목·강사진·정책이 확정된 것으로 취급하지 않는다.</p>
+</div><article class="prose" aria-label="Ivycore 제품 기획 전문"><section id="section-1" aria-labelledby="heading-1"><h2 id="heading-1">만들 제품과 성공 기준</h2>
+<p><strong>Ivycore는 IB 학생의 답안에서 학습 문제를 진단하고, 개인별 계획을 담당 선생님의 수업·과제·피드백·재점검으로 실행하는 학습 서비스다.</strong></p>
+<p>제품의 중심 단위는 <strong>학생 한 명의 과목별 학습 공간</strong>이다. 학생·학부모·선생님·어드민은 같은 학습 기록을 각자의 역할과 권한에 맞게 이용한다. 학생이 여러 과목을 수강하면 과목별 목표·계획·담당 선생님을 구분한다.</p>
+<p>첫 버전의 성공 기준은 아래 흐름을 실제 계정으로 끝까지 운영할 수 있는 것이다.</p>
+<blockquote>
+<p>상담 접수 → 진단 근거 확보 → 선생님의 진단 → 개인별 계획 → 튜터 배정·수강 합의 → 수업·과제 → 피드백·재제출 → 새로운 과제에서 재점검 → 학부모 보고·다음 계획</p>
+</blockquote>
+<ul>
+<li>학생은 다음에 무엇을 왜 해야 하는지 알고, 제출한 답안과 피드백을 다시 볼 수 있다.</li>
+<li>학부모는 어떤 어려움을 다루고 있는지, 무엇이 확인됐고 무엇이 아직 확인되지 않았는지 이해한다.</li>
+<li>선생님은 진단 근거와 이전 답안을 보고 수업을 준비하며, 다음 학습 판단을 기록한다.</li>
+<li>어드민은 각 학생의 담당자·현재 단계·다음 조치·지연 이유를 확인하고 처리한다.</li>
+</ul>
+</section>
+<section id="section-2" aria-labelledby="heading-2"><h2 id="heading-2">랜딩에서 확인한 약속과 현재 상태</h2>
+<h3>확인한 자료</h3>
+<ul>
+<li><a href="https://www.ivycore.study/" rel="nofollow">공개 랜딩</a>, <a href="https://www.ivycore.study/program/" rel="nofollow">프로그램 안내</a>, <a href="https://www.ivycore.study/examples/learning-roadmap/" rel="nofollow">로드맵 예시</a>, <a href="https://www.ivycore.study/examples/feedback/" rel="nofollow">피드백 예시</a>.</li>
+<li>로컬 랜딩 소스 (내부 검토 자료), 프로그램 본문 (내부 검토 자료), 학습 예시 데이터 (내부 검토 자료), 상담 폼 (내부 검토 자료).</li>
+<li>현재 구현 설명 (내부 검토 자료), 운영 결정 대기 항목 (내부 검토 자료), 상담 운영 구조 기록 (내부 검토 자료).</li>
+</ul>
+<p>공개 페이지에서 확인한 메인 문구는 ‘같은 목표, 다른 커리큘럼’이며, 현재 로컬 소스는 ‘IB에서 점수가 오르지 않는 이유부터 찾습니다’다. 두 버전에서 공통으로 확인되는 진단·학습 경로·튜터 매칭·피드백·재점검을 기획의 기준으로 삼았다. 이 문서는 소스와 공개 설명을 검토한 결과이며, 실제 수강 서비스나 운영 API의 새 검증 기록은 아니다.</p>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="랜딩에서 확인한 약속과 현재 상태 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">랜딩의 근거</th>
+<th scope="col">실제 제품에서 제공할 기능</th>
+<th scope="col">현재 확인 범위</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>학생별로 다른 학습 출발점</td>
+<td>과목·목표·최근 평가·답안을 기반으로 한 개별 진단</td>
+<td>진단 카드와 답안은 가상 예시</td>
+</tr>
+<tr>
+<td>설문만으로 진단을 확정하지 않는다는 안내</td>
+<td>자료 검토 또는 초기 진단 과제, 근거 부족 상태 표시</td>
+<td>상담에서 학습 기록을 선택 첨부</td>
+</tr>
+<tr>
+<td>과목별 평가 기준으로 답안을 검토</td>
+<td>과목·과정·평가 유형·기준 버전에 맞는 진단과 피드백</td>
+<td>과목별 설명·상호작용 예시</td>
+</tr>
+<tr>
+<td>단계마다 할 일·튜터 역할·판단 기준을 둔 로드맵</td>
+<td>개인별 계획 편집, 과제 연결, 단계 이동과 계획 변경 기록</td>
+<td>학생용 로드맵은 예시 화면</td>
+</tr>
+<tr>
+<td>필요한 연습을 지도할 튜터 연결</td>
+<td>지도 가능 역량·시간·언어·정원을 확인한 배정</td>
+<td>튜터 프로필은 예시</td>
+</tr>
+<tr>
+<td>초안·첨삭·수정본·새 과제 연결</td>
+<td>답안 버전, 위치를 지정한 피드백, 재제출, 적용 과제</td>
+<td>예시 페이지의 학습 기록</td>
+</tr>
+<tr>
+<td>My Plan·Progress·Messages</td>
+<td>실제 학습 공간, 진척 기록, 과목별 대화</td>
+<td>공개 학습 예시로 연결되는 링크</td>
+</tr>
+<tr>
+<td>‘우리 아이’의 필요한 공부를 확인하는 CTA</td>
+<td>자녀 연결, 보호자용 학습 보고와 일정·수강 관리</td>
+<td>실제 학부모 계정·대시보드 없음</td>
+</tr>
+<tr>
+<td>상담 접수 및 다음 단계 안내</td>
+<td>접수함, 담당자 배정, 상담 진행·수강 전환 관리</td>
+<td>저장·비공개 첨부·메일의 과거 운영 검증 기록 있음</td>
+</tr>
+</tbody>
+</table></div></div>
+<p>랜딩의 목표 점수·튜터 인물·학습 사례를 실제 성과나 확보된 강사진의 근거로 사용하지 않는다. 상담 접수와 수강 계약·결제는 별개다.</p>
+</section>
+<section id="section-3" aria-labelledby="heading-3"><h2 id="heading-3">초안의 가정</h2>
+<ol>
+<li><strong>첫 형태는 반응형 웹</strong>이다. 학생·학부모는 모바일에서도 확인·제출하고, 선생님·어드민은 데스크톱에서 검토·운영한다.</li>
+<li><strong>기본 운영 모델은 1:1 수업 + 과제·첨삭</strong>이다. 수업 방식은 아직 확정되지 않은 가정이다. 수업 방식이 바뀌면 일정·과제 배정 구조를 조정한다.</li>
+<li><strong>진단·계획·피드백의 책임자는 선생님</strong>이다. 첫 버전의 매칭은 어드민이 근거를 확인해 배정한다.</li>
+<li><strong>첫 제공 과목은 실제 지도 인력과 자료가 준비된 IB 과목 1~2개</strong>를 권장한다. 랜딩의 과목 목록 전체가 수업 제공 범위라는 뜻은 아니다.</li>
+<li>학생은 학습 주체, 학부모는 지원·수강 의사결정에 참여하는 역할로 설계한다. 학부모가 항상 결제자라는 가정은 두지 않는다.</li>
+<li>첫 수업은 기존 화상 도구나 대면 방식으로 진행하고, 제품에는 일정·참여 링크·수업 기록을 남긴다. 실제 수업 도구는 운영자가 정한다.</li>
+<li>계획 기간은 학생의 목표·학습량에 맞춰 입력한다. 첫 파일럿의 4–8주 계획은 제안이며 고정 수업 상품이나 성과 보장 기간이 아니다.</li>
+</ol>
+</section>
+<section id="section-4" aria-labelledby="heading-4"><h2 id="heading-4">네 역할이 연결되는 전체 흐름</h2>
+<ol class="learning-flow" aria-label="상담부터 학부모 보고까지의 학습 흐름"><li><span class="flow-number">1</span><div><strong>상담 접수</strong><p>학생·학부모가 목표와 현재 어려움을 전달합니다.</p></div></li><li><span class="flow-number">2</span><div><strong>초기 진단</strong><p>어드민이 담당자를 정하고, 선생님이 답안이나 초기 과제를 검토합니다.</p></div></li><li><span class="flow-number">3</span><div><strong>맞춤 계획</strong><p>학습 목표와 과제, 다음 단계로 넘어갈 판단 기준을 정합니다.</p></div></li><li><span class="flow-number">4</span><div><strong>튜터 매칭·수강</strong><p>지도 범위와 가능한 시간을 확인하고 수강 조건에 합의합니다.</p></div></li><li><span class="flow-number">5</span><div><strong>수업·과제</strong><p>학생은 수업에 참여하고 과목별 과제를 제출합니다.</p></div></li><li><span class="flow-number">6</span><div><strong>피드백·재제출</strong><p>선생님의 피드백을 읽고, 수정 이유와 함께 새 답안을 제출합니다.</p></div></li><li><span class="flow-number">7</span><div><strong>새 문제에서 재점검</strong><p>다른 문제에서도 혼자 적용할 수 있는지 확인합니다.</p></div></li><li><span class="flow-number">8</span><div><strong>보고·다음 계획</strong><p>학생과 학부모에게 확인한 변화와 다음 학습을 안내합니다.</p></div></li></ol><p class="flow-return">재점검 결과에 따라 다음 학습과 과제를 조정하고, 학습 주기를 이어갑니다.</p>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="네 역할이 연결되는 전체 흐름 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">단계</th>
+<th scope="col">학생</th>
+<th scope="col">학부모</th>
+<th scope="col">선생님</th>
+<th scope="col">어드민</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>접수·연결</td>
+<td>목표·고민·자료 전달, 계정 활성화</td>
+<td>신청 가능, 자녀 연결 요청</td>
+<td>진단 의뢰 확인</td>
+<td>접수 확인, 담당자 지정, 계정 초대</td>
+</tr>
+<tr>
+<td>초기 진단</td>
+<td>기존 답안 또는 초기 과제 제출</td>
+<td>학습 상황 보완</td>
+<td>근거 검토, 약점·우선 연습 작성</td>
+<td>진단 지연·자료 부족 관리</td>
+</tr>
+<tr>
+<td>계획·매칭</td>
+<td>목표·학습량·가능 시간 확인</td>
+<td>지원 가능한 시간과 조건 확인</td>
+<td>계획 작성, 지도 가능 여부 응답</td>
+<td>튜터 후보 검토, 수강 조건 안내</td>
+</tr>
+<tr>
+<td>수강 시작</td>
+<td>학습 계획 확인</td>
+<td>계약 당사자인 경우 조건 동의</td>
+<td>담당 학습 공간 확인</td>
+<td>합의·입금 등 운영 확인 후 활성화</td>
+</tr>
+<tr>
+<td>주간 학습</td>
+<td>수업·과제·질문·재제출</td>
+<td>일정·필요한 지원 확인</td>
+<td>수업 기록·첨삭·다음 과제</td>
+<td>미제출·피드백 지연·일정 문제 처리</td>
+</tr>
+<tr>
+<td>재점검·보고</td>
+<td>새 과제 수행, 다음 계획 확인</td>
+<td>발행된 보고 확인·질문</td>
+<td>개선 근거·남은 약점·다음 계획 발행</td>
+<td>누락·품질 확인, 재매칭·종료 처리</td>
+</tr>
+</tbody>
+</table></div></div>
+<p>진단 담당 선생님과 최종 수업 담당 선생님은 다를 수 있다. 최초 진단은 어드민이 먼저 담당자를 지정하고, 진단 결과를 활용해 수업 튜터를 매칭한다. 튜터가 정해질 때까지 진단을 진행할 수 없는 순환을 만들지 않는다.</p>
+</section>
+<section id="section-5" aria-labelledby="heading-5"><h2 id="heading-5">학생 기획</h2>
+<p><strong>핵심 질문: “지금 무엇을 해야 하고, 이 연습이 내 약점과 어떻게 연결되나요?”</strong></p>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="학생 기획 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">기능</th>
+<th scope="col">학생이 하는 일·보는 결과</th>
+<th scope="col">첫 버전</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>온보딩·과목별 목표</td>
+<td>IB 과정, 과목 세부 트랙, HL/SL 또는 미정, 평가 시점, 현재 성적 출처, 목표, 학습 가능량 입력</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>초기 자료·진단 과제</td>
+<td>최근 답안·피드백을 제출하거나 선생님이 지정한 초기 과제 수행</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>오늘의 학습</td>
+<td>다음 과제, 마감, 다음 수업, 아직 읽지 않은 피드백, 필요한 조치 확인</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>내 진단</td>
+<td>강점·보완점·근거 답안·우선 연습 확인, 이해가 어려운 부분 질문</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>내 로드맵</td>
+<td>현재 단계·주간 할 일·다음 단계 판단 기준·변경 이유 확인</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>과제 제출</td>
+<td>텍스트 또는 허용 파일 제출, 제출 시점·버전 확인, 자기 점검·수정 이유 기록</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>피드백·재제출</td>
+<td>답안의 해당 부분과 선생님 질문 확인, 이전 답안과 수정본 비교, 새 버전 제출</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>수업·질문</td>
+<td>일정·수업 참여 링크 확인, 과목별 학습 질문, 변경 요청</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>성장 기록</td>
+<td>처음 답안·수정 답안·새 문제 적용 결과, 남은 약점과 다음 학습 확인</td>
+<td>필수</td>
+</tr>
+</tbody>
+</table></div></div>
+<p><strong>첫 화면 우선순위:</strong> 다음 할 일 → 제출/재제출 → 피드백 → 다음 수업 → 현재 계획. 목표 점수는 목표로 표시하고, 최신 학교 평가와 선생님의 학습 관찰을 별도 표시한다.</p>
+<p><strong>대표 흐름:</strong> 초대 수락 → 과목·목표 확인 → 초기 답안 제출 → 진단 확인 → 계획 확인 → 과제 제출 → 피드백 읽기 → 수정 이유와 함께 재제출 → 새로운 과제 수행 → 다음 계획 확인.</p>
+</section>
+<section id="section-6" aria-labelledby="heading-6"><h2 id="heading-6">학부모 기획</h2>
+<p><strong>핵심 질문: “우리 아이가 무엇을 개선하고 있으며, 지금 어떤 지원이 필요한가요?”</strong></p>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="학부모 기획 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">기능</th>
+<th scope="col">학부모가 하는 일·보는 결과</th>
+<th scope="col">첫 버전</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>자녀 연결·전환</td>
+<td>확인된 자녀와 계정을 연결하고, 자녀가 여러 명이면 각각 선택</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>학습 현황</td>
+<td>과목별 목표·현재 학습 초점·일정·미제출·검토 대기 확인</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>진단·계획 설명</td>
+<td>발행된 진단의 요약·우선순위·계획·담당 선생님 확인</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>정기 학습 보고</td>
+<td>실제 답안에서 확인한 변화, 새 과제에서 확인 여부, 남은 과제 확인</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>필요한 지원</td>
+<td>일정 확보·자료 준비·학습 환경 등 선생님이 요청한 구체적 지원 확인</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>상담·운영 문의</td>
+<td>학습 방향 질문, 일정·튜터 변경 요청, 어드민 문의</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>수강 조건·비용</td>
+<td>계약 당사자인 경우 제안 내용·동의·입금 확인·잔여 수업·변경 처리 확인</td>
+<td>필수</td>
+</tr>
+</tbody>
+</table></div></div>
+<p><strong>첫 화면 우선순위:</strong> 자녀별 학습 초점과 다음 일정 → 최근 보고 → 지원 요청 → 수강 현황.</p>
+<p>학부모는 학생 대신 답안을 수정하거나 제출하지 않는다. 학생의 과제 제출율과 학습 개선을 구분해 보여준다. 선생님이 발행한 보고에는 근거 답안의 필요한 부분을 포함한다.</p>
+<p>학생–선생님 학습 대화의 원문 전체를 보호자에게 기본 공개할지는 운영 정책으로 확정해야 한다. 초안은 <strong>발행된 보고와 공유한 학습 근거를 제공하고, 보호자 상담 대화는 별도 공간에 둔다</strong>는 제안이다.</p>
+<p><strong>대표 흐름:</strong> 자녀 연결 확인 → 진단·계획 읽기 → 수강 조건 확인 → 일정·지원 요청 확인 → 정기 보고 읽기 → 선생님에게 질문 또는 어드민에 운영 요청.</p>
+</section>
+<section id="section-7" aria-labelledby="heading-7"><h2 id="heading-7">선생님 기획</h2>
+<p><strong>핵심 질문: “이 학생에게 필요한 연습은 무엇이고, 어떤 답안으로 개선을 확인할 수 있나요?”</strong></p>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="선생님 기획 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">기능</th>
+<th scope="col">선생님이 하는 일·보는 결과</th>
+<th scope="col">첫 버전</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>프로필·지도 범위</td>
+<td>실제 경력, 지도 가능한 과목·세부 트랙·평가 유형, 언어, 시간, 담당 가능 인원 등록</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>배정 확인</td>
+<td>진단 의뢰 또는 수업 배정 수락·거절, 거절 이유 전달</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>담당 학생·업무함</td>
+<td>맡은 과목별 학생, 진단 대기, 새 제출, 재제출, 보고 예정, 지연 업무 확인</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>진단 작성</td>
+<td>답안 위치·평가 기준·관찰·우선순위·추가 자료 필요 여부 기록</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>계획 작성·조정</td>
+<td>목표별 단계, 과제, 학습량, 판단 기준, 재점검 시점, 변경 이유 작성</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>수업 운영</td>
+<td>가능한 시간 제공, 확정 일정 확인, 출결·수업 초점·다음 행동 기록</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>과제·자료 배정</td>
+<td>학습 목표·연습 의도·문항·제출 방식·마감·자료를 학생에게 배정</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>답안 검토·피드백</td>
+<td>텍스트 구간 또는 파일 페이지·문항을 지정해 첨삭, 다음 행동·재제출 요청 발행</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>재점검·보고</td>
+<td>새 문제에서의 수행을 확인하고, 학생·학부모용 보고와 다음 계획 발행</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>운영 요청·정산 확인</td>
+<td>일정·정원·인수인계 문제 전달, 확정 수업과 정산 기록 확인</td>
+<td>필수</td>
+</tr>
+</tbody>
+</table></div></div>
+<p><strong>첫 화면 우선순위:</strong> 마감이 가까운 검토 → 새 제출·진단 의뢰 → 오늘 수업 → 보고 예정. 공개 프로필의 경력·자격은 어드민 확인 상태를 구분한다.</p>
+<p>진단·피드백·보고는 초안 저장 후 발행한다. 학생·학부모 화면에는 발행된 내용만 보인다. 첫 버전의 편집은 텍스트와 PDF/이미지의 페이지·문항·설명 위치 지정으로 충족하고, 고급 필기 도구는 이후에 검토한다.</p>
+<p><strong>대표 흐름:</strong> 배정 수락 → 자료 확인 → 초기 진단 → 계획 작성 → 과제 배정 → 수업 → 제출 검토 → 수정 요청 → 재제출·새 과제 검토 → 보고 발행·계획 조정.</p>
+</section>
+<section id="section-8" aria-labelledby="heading-8"><h2 id="heading-8">어드민 기획</h2>
+<p><strong>핵심 질문: “어느 학생에게 지금 어떤 조치가 필요하며, 누가 책임지고 있나요?”</strong></p>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="어드민 기획 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">기능</th>
+<th scope="col">어드민이 하는 일·보는 결과</th>
+<th scope="col">첫 버전</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>상담 접수함</td>
+<td>기존 접수·자료 확인, 담당자 지정, 다음 연락·현재 단계 기록</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>계정·관계 관리</td>
+<td>학생·보호자·선생님 초대, 역할 설정, 자녀 연결 확인·해제, 접근 회수</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>진단 운영</td>
+<td>진단 담당 배정, 자료 보완 요청, 완료 예정·지연·미발행 관리</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>튜터 매칭</td>
+<td>지도 범위·약점 적합성·시간·언어·정원 검토, 제안·수락·배정·교체 기록</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>수강 관리</td>
+<td>상품 제안·동의·수강 상태·수업 횟수·입금 확인·변경/취소 요청 기록</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>일정·예외 처리</td>
+<td>일정 충돌, 변경 요청, 결석, 담당 부재, 추가 과제·재배정 처리</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>품질·지연 관리</td>
+<td>미제출·피드백 지연·보고 누락, 근거 없는 진단, 업무 쏠림 확인</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>과목·기준·자료 관리</td>
+<td>실제 제공 범위, 평가 기준 버전·출처, 학습 템플릿, 자료 사용 권한 관리</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>문의·민원</td>
+<td>문의 접수·담당·처리 상태·결과 기록, 필요 시 학습 공간 인수인계</td>
+<td>필수</td>
+</tr>
+<tr>
+<td>기본 정산·운영 지표</td>
+<td>수업 실적과 합의된 정산 기록, 접수→수강 전환·지연·완료 현황 확인</td>
+<td>필수</td>
+</tr>
+</tbody>
+</table></div></div>
+<p><strong>첫 화면 우선순위:</strong> 담당자 없는 접수 → 진단·피드백 지연 → 매칭 대기 → 일정/민원 문제 → 수강·입금 처리. 모든 진행 건에는 담당자와 다음 조치 예정일을 둔다.</p>
+<p>튜터 교체 시 새 선생님에게 해당 과목의 진단·계획·과제·피드백을 인계하고, 이전 선생님의 접근 종료 시점을 기록한다. 완료된 수업만으로 자동 정산하지 않고 합의된 출결·변경 정책과 정산 조건을 적용한다.</p>
+</section>
+<section id="section-9" aria-labelledby="heading-9"><h2 id="heading-9">핵심 기능의 상세 규칙</h2>
+<h3>9.1 진단: 관찰과 근거를 먼저 저장</h3>
+<p>진단 한 건에는 다음 내용이 필요하다.</p>
+<ul>
+<li>학생·과목·세부 트랙·HL/SL·평가 유형·평가 기준 버전.</li>
+<li>사용한 답안/초기 과제, 작성 날짜, 수행 조건, 도움을 받은 여부.</li>
+<li>잘 수행한 부분과 보완할 부분, 근거가 되는 문장·페이지·문항.</li>
+<li>우선 학습 목표 1~3개, 그 목표를 먼저 다루는 이유, 다음 연습.</li>
+<li>다음에 확인할 과제와 판단 기준, 작성·검토 선생님, 발행 시점.</li>
+<li>근거 충분 여부와 추가 확인 요청. 기존 성적은 평가 종류·시점을 함께 표시.</li>
+</ul>
+<p>자료 없이 신청해도 접수할 수 있다. 이 경우 담당 선생님이 초기 과제나 확인 활동을 지정하고, 근거가 확보될 때까지 진단을 확정하지 않는다. 레이더 차트는 기준과 데이터가 준비된 경우에만 제공하며, 자료가 없을 때 임의 점수를 채우지 않는다.</p>
+<p>과목의 채점 기준과 학습 관찰 항목을 구분한다. 예를 들어 문항별 마크스킴을 사용하는 수학에 공통 고정 배점을 붙이거나, 서로 다른 평가 유형의 점수를 직접 비교하지 않는다. 최신 기준의 검토·승인은 운영자가 출시 전에 수행해야 한다.</p>
+<h3>9.2 로드맵: 약점에서 과제와 판단으로 연결</h3>
+<p>로드맵 단계에는 <strong>관련 진단 → 학생의 할 일 → 제출물 → 선생님의 검토 항목 → 단계 이동 기준 → 재점검 시점</strong>을 둔다.</p>
+<p>랜딩의 개념 확인·답안 구성·문제 적용·재확인 흐름을 기본 템플릿으로 삼는다. 모든 학생이 같은 순서를 같은 기간 동안 수행하도록 고정하지 않는다. 과목과 진단에 맞게 단계·과제·기간을 조정한다.</p>
+<p>단계 이동은 선생님의 판단과 근거 답안으로 기록한다. 과제 제출이나 수업 출석만으로 해당 역량을 달성 처리하지 않는다. 계획을 변경할 때는 변경 전·후, 이유, 적용일을 보존하고 학생·학부모에게 알린다.</p>
+<h3>9.3 과제·피드백: 원본과 수정본을 연결</h3>
+<p>과제에는 학습 목표, 설명·자료, 제출 방식, 마감, 확인 기준을 둔다. 답안 제출은 버전을 만들고, 피드백은 해당 버전에 연결한다. 수정본이 올라와도 이전 답안과 피드백을 덮어쓰지 않는다.</p>
+<p>피드백의 최소 구성은 <strong>어느 부분 → 무엇이 확인됐는지 → 왜 보완이 필요한지 → 학생이 다음에 할 일</strong>이다. 재제출과 함께 수정 이유를 남기고, 이후 새 문제에 적용하는 과제를 별도 배정한다.</p>
+<h3>9.4 진척·보고: 참여와 학습 확인을 구분</h3>
+<p>진척 화면에는 아래 세 가지를 분리해 보여준다.</p>
+<ol>
+<li><strong>참여:</strong> 수업 출결, 과제 제출·지연, 피드백 확인.</li>
+<li><strong>학습 근거:</strong> 초안→수정본에서 확인한 변화, 새 문제에서 혼자 수행한 여부, 아직 확인되지 않은 항목.</li>
+<li><strong>평가 결과:</strong> 학교 시험·모의 평가 등의 실제 기록과 평가 시점·출처. 목표 점수와 별도 표시.</li>
+</ol>
+<p>학부모 보고는 기간·학습 목표·수행 내역·개선 근거·남은 어려움·다음 계획·지원 요청을 포함한다. 초기 제안은 주간 요약과 계획 구간 종료 보고이며, 실제 주기는 수업 상품에 맞춰 정한다.</p>
+<p><strong>예시 보고 문장:</strong> “초안에서 빠졌던 근거와 해석의 연결을 수정본에 추가했습니다. 새로운 지문에서 혼자 같은 연결을 만드는지는 다음 과제에서 확인합니다.” 이 문장은 보고 형식 예시이며 실제 학생 성과가 아니다.</p>
+<h3>9.5 수업·수강·운영</h3>
+<ul>
+<li>일정에는 선생님·학생·과목·시작/종료·시간대·진행 방식·참여 정보를 둔다. 확정 시 양쪽의 시간 중복을 확인한다.</li>
+<li>변경·취소는 요청→운영 확인→결과 통보 흐름으로 처리하고 기존 일정과 변경 이력을 보존한다.</li>
+<li>수강 제안에는 과목·튜터·기간·횟수·수업 및 첨삭 범위·비용·변경 조건을 명시한다. 상담 접수만으로 수강을 시작하지 않는다.</li>
+<li>첫 버전의 입금 확인·환불·튜터 정산은 담당자가 근거와 처리 상태를 기록한다. 실제 확인 전에는 완료로 표시하지 않는다.</li>
+<li>수업 중 사용한 자료와 다음 과제를 수업 기록에 연결한다. 지각·결석·취소의 수업 차감 기준은 출시 전에 정한다.</li>
+</ul>
+</section>
+<section id="section-10" aria-labelledby="heading-10"><h2 id="heading-10">권한과 연결 규칙</h2>
+<p>표의 내용은 첫 버전의 제안이다. 특히 보호자 공유 범위는 운영 정책 확정 대상이다.</p>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="권한과 연결 규칙 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">정보/행동</th>
+<th scope="col">학생</th>
+<th scope="col">학부모</th>
+<th scope="col">선생님</th>
+<th scope="col">어드민</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>목표·기본 학습 정보</td>
+<td>본인 입력·확인</td>
+<td>연결된 자녀 확인·보완</td>
+<td>배정된 과목의 필요한 정보 확인</td>
+<td>담당 운영 범위 확인·정정</td>
+</tr>
+<tr>
+<td>발행된 진단·계획</td>
+<td>본인 열람·질문</td>
+<td>연결된 자녀 열람·질문</td>
+<td>배정된 과목 작성·발행</td>
+<td>운영·품질 확인</td>
+</tr>
+<tr>
+<td>진단·보고 초안</td>
+<td>열람 불가</td>
+<td>열람 불가</td>
+<td>담당 과목 작성·검토</td>
+<td>품질 검토가 필요한 범위</td>
+</tr>
+<tr>
+<td>답안 제출·재제출</td>
+<td>본인 제출</td>
+<td>제출 불가</td>
+<td>배정된 과목 열람·피드백</td>
+<td>필요한 운영·품질 확인</td>
+</tr>
+<tr>
+<td>발행된 학습 보고·근거</td>
+<td>본인 열람</td>
+<td>연결된 자녀의 공유 범위 열람</td>
+<td>담당 과목 작성·발행</td>
+<td>운영·품질 확인</td>
+</tr>
+<tr>
+<td>학생–선생님 학습 대화</td>
+<td>본인 대화 참여</td>
+<td>기본 열람 범위는 정책 확정 필요</td>
+<td>배정된 과목 참여</td>
+<td>문의 처리 등 필요한 접근 기록</td>
+</tr>
+<tr>
+<td>보호자 상담·운영 대화</td>
+<td>본인 공유 대상으로 지정된 내용</td>
+<td>본인 대화 참여</td>
+<td>해당 상담에 배정 시 참여</td>
+<td>담당 문의 처리</td>
+</tr>
+<tr>
+<td>수강·비용</td>
+<td>본인 수강 범위 확인</td>
+<td>계약/결제자로 연결된 건 확인</td>
+<td>수업 범위·본인 정산 확인</td>
+<td>제안·합의·확인·처리</td>
+</tr>
+<tr>
+<td>타 학생·타 가족 기록</td>
+<td>접근 불가</td>
+<td>접근 불가</td>
+<td>담당이 아닌 과목·학생 접근 불가</td>
+<td>부여받은 운영 권한에 한정</td>
+</tr>
+<tr>
+<td>계정 역할·배정 변경</td>
+<td>요청</td>
+<td>요청</td>
+<td>요청·배정 응답</td>
+<td>권한에 따라 처리·이력 기록</td>
+</tr>
+</tbody>
+</table></div></div>
+<ul>
+<li>로그인 계정과 학생/보호자 관계는 별도다. 한 계정이 보호자이자 선생님일 수 있으며 역할별 화면과 권한을 구분한다.</li>
+<li>자녀 관계와 선생님 배정은 초대·확인된 연결로 설정한다. 이름이나 이메일이 같다는 이유만으로 기존 접수를 연결하지 않는다.</li>
+<li>보호자는 여러 자녀, 학생은 정책에 따라 여러 보호자와 연결할 수 있다. 관계 해제 시 접근을 회수한다.</li>
+<li>선생님은 배정된 과목 공간을 기준으로 접근한다. 재배정·종료·계정 정지 시 조회·다운로드 권한도 다시 확인한다.</li>
+<li>비공개 첨부는 서버가 역할·관계를 확인한 뒤 제한된 시간 동안 접근시킨다. 메뉴를 숨기는 것만으로 접근을 막지 않는다.</li>
+<li>알림 이메일에는 민감한 답안·성적·대화 원문을 넣지 않고 로그인 후 확인할 링크를 제공한다.</li>
+</ul>
+</section>
+<section id="section-11" aria-labelledby="heading-11"><h2 id="heading-11">알림·실패·예외 처리</h2>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="알림·실패·예외 처리 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">발생한 일</th>
+<th scope="col">받는 역할</th>
+<th scope="col">필요한 처리</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>접수·계정 초대</td>
+<td>신청자·어드민</td>
+<td>접수 번호·다음 단계, 초대 실패 확인</td>
+</tr>
+<tr>
+<td>자료 보완·초기 과제</td>
+<td>학생, 필요한 경우 보호자</td>
+<td>무엇을 언제 제출할지 안내</td>
+</tr>
+<tr>
+<td>배정 제안·응답</td>
+<td>선생님·어드민</td>
+<td>수락/거절, 거절 시 다른 후보 검토</td>
+</tr>
+<tr>
+<td>진단·계획 발행/변경</td>
+<td>학생·연결된 보호자</td>
+<td>변경 내용·확인할 학습 행동</td>
+</tr>
+<tr>
+<td>과제 제출·재제출</td>
+<td>담당 선생님</td>
+<td>제출 버전과 검토 예정 목록 갱신</td>
+</tr>
+<tr>
+<td>피드백·보고 발행</td>
+<td>학생, 보고 대상 보호자</td>
+<td>읽을 내용과 다음 행동</td>
+</tr>
+<tr>
+<td>마감·수업 일정·변경</td>
+<td>관계자</td>
+<td>중복 통보 방지, 변경된 시간대 확인</td>
+</tr>
+<tr>
+<td>제출·검토·보고 지연</td>
+<td>담당자·어드민</td>
+<td>다음 조치와 지연 이유 기록</td>
+</tr>
+</tbody>
+</table></div></div>
+<p>저장 완료와 메일 전달 상태를 구분한다. 통신 재시도에서 같은 제출·발행·수강 확인이 중복 생성되지 않아야 한다. 알림 실패가 이미 저장된 학습 기록을 취소하지 않는다.</p>
+<p>자료 없는 신청, 읽을 수 없는 파일, 튜터 부재·거절, 학생 미제출, 선생님 지연, 일정 충돌, 계정 연결 오류, 수강 중단을 각각 처리할 수 있어야 한다. 본문 저장/파일 업로드 실패 시 완료로 표시하지 않고 입력·재시도 방법을 보존한다. 초대 만료·계정 복구·연결 해제 요청은 어드민이 확인해 처리한다.</p>
+</section>
+<section id="section-12" aria-labelledby="heading-12"><h2 id="heading-12">첫 출시 범위와 이후 범위</h2>
+<h3>P0 — 네 역할로 한 학습 주기를 운영하기 위한 필수 범위</h3>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="첫 출시 범위와 이후 범위 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">기능 묶음</th>
+<th scope="col">포함할 최소 결과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>계정·관계·접근</td>
+<td>초대·로그인·복구·역할·자녀 연결·담당 과목 배정·접근 회수</td>
+</tr>
+<tr>
+<td>상담·진단 업무</td>
+<td>접수 연결·담당자·자료/초기 과제·진단 초안/발행·지연 상태</td>
+</tr>
+<tr>
+<td>개인별 계획</td>
+<td>목표·과제·판단 기준·단계·기간·변경 이력</td>
+</tr>
+<tr>
+<td>튜터 매칭</td>
+<td>확인된 지도 범위·가능 시간·정원·수락/거절·교체</td>
+</tr>
+<tr>
+<td>수강·수업</td>
+<td>조건 안내·동의·운영 확인·일정·참여 링크·출결·변경 요청</td>
+</tr>
+<tr>
+<td>과제·피드백</td>
+<td>텍스트/파일 제출·버전·위치 지정 첨삭·재제출·새 과제 재점검</td>
+</tr>
+<tr>
+<td>학생·보호자 현황</td>
+<td>오늘 할 일·학습 근거·발행 보고·지원 요청</td>
+</tr>
+<tr>
+<td>대화·알림</td>
+<td>과목별 질문·보호자 상담·운영 문의·필수 알림·실패 상태</td>
+</tr>
+<tr>
+<td>어드민 운영</td>
+<td>담당자 없는 건·지연·예외·기준/자료 관리·수강/정산 기록</td>
+</tr>
+</tbody>
+</table></div></div>
+<p>P0는 기능 목록 전체의 고급화를 뜻하지 않는다. 매칭·수강 확인·일정 변경·정산은 어드민이 처리할 수 있는 화면과 기록으로 시작한다. 실제 이용자의 데이터를 지속 저장하고 권한을 적용하는 기능은 첫 출시부터 필요하다.</p>
+<h3>P1 — 운영 병목을 확인한 뒤 확장</h3>
+<ul>
+<li>반복 수업 예약·캘린더 연동, 조건이 확정된 온라인 결제·자동 정산.</li>
+<li>검토 도구 고도화: PDF 위 직접 필기, 답안 비교, 과목별 문제·자료 라이브러리.</li>
+<li>보고 초안 보조·매칭 후보 추천·업무 자동화. 실제 정확성·업무 절감·비용을 검증한 항목부터 도입.</li>
+<li>제공 과목 확대, 그룹 수업, 더 세분화된 운영자 권한, 필요가 확인된 앱.</li>
+</ul>
+<p>첫 버전에는 자체 화상회의, 공개 튜터 마켓플레이스, 점수 예측, 범용 AI 자동 채점 기능을 포함하지 않는 것을 제안한다. AI나 새 도구가 필요해지면 기능별 입력 자료·검토 책임·비용·실패 처리를 별도 기획한다.</p>
+</section>
+<section id="section-13" aria-labelledby="heading-13"><h2 id="heading-13">필요한 데이터와 현재 코드 활용</h2>
+<h3>제품 데이터의 최소 단위</h3>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="필요한 데이터와 현재 코드 활용 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">데이터</th>
+<th scope="col">연결·핵심 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>계정·역할</td>
+<td>로그인 사용자, 역할, 활성/정지 상태</td>
+</tr>
+<tr>
+<td>학생·보호자 관계</td>
+<td>학생, 보호자 계정, 확인·공유 범위·연결/해제 시점</td>
+</tr>
+<tr>
+<td>과목·평가 기준</td>
+<td>과목 세부 트랙, 레벨, 평가 유형, 기준 버전·출처·승인 상태</td>
+</tr>
+<tr>
+<td>상담·운영 담당</td>
+<td>기존 접수 식별자, 신청자, 담당자, 다음 조치, 전환 상태</td>
+</tr>
+<tr>
+<td>과목별 학습 공간</td>
+<td>학생, 과목, 담당 선생님, 목표, 수강 상태</td>
+</tr>
+<tr>
+<td>선생님 프로필·배정</td>
+<td>지도 범위, 확인 상태, 가능 시간·정원, 담당·배정 이력</td>
+</tr>
+<tr>
+<td>진단·계획</td>
+<td>근거·기준 버전·우선순위·단계·판단 기준·발행/변경 이력</td>
+</tr>
+<tr>
+<td>과제·제출·첨부</td>
+<td>학습 목표, 마감, 학생 답안 버전, 파일 소유·사용 범위</td>
+</tr>
+<tr>
+<td>피드백·재점검</td>
+<td>해당 제출 버전, 위치, 관찰·다음 행동, 새 과제의 확인 결과</td>
+</tr>
+<tr>
+<td>수업</td>
+<td>과목 공간, 참여자, 일정·시간대·상태·출결·수업 기록</td>
+</tr>
+<tr>
+<td>보고·대화</td>
+<td>과목 공간, 공개 대상, 초안/발행 상태, 관련 과제·수업</td>
+</tr>
+<tr>
+<td>수강·금액·처리 기록</td>
+<td>제안 조건·동의·입금/환불 확인·잔여 횟수·튜터 정산</td>
+</tr>
+<tr>
+<td>운영 이력·알림</td>
+<td>누가 무엇을 변경했는지, 통보 대상·결과·실패</td>
+</tr>
+</tbody>
+</table></div></div>
+<h3>현재 구현에서 활용할 수 있는 부분</h3>
+<ul>
+<li>공개 랜딩·설명·예시·기존 상담 진입 흐름은 유입과 서비스 설명에 활용한다.</li>
+<li>상담 폼에는 신청자, 학생, 과목, 목표, 학습 맥락, 선택 첨부가 이미 있다. 초대·본인/관계 확인을 거친 접수만 실제 학습 공간으로 연결한다.</li>
+<li>현재 저장 구조는 정적 웹 + Python API + Supabase 비공개 저장 + Resend 접수 메일이다. 새 제품의 화면 기술과 인증 방식은 상세 설계에서 확정한다.</li>
+<li>실제 계정 인증과 역할별 데이터 접근은 새로 설계해야 한다. 현재 상담 테이블은 <code class="notranslate">anon</code>/<code class="notranslate">authenticated</code> 접근을 차단하므로 로그인 추가만으로 조회할 수 있다고 가정하지 않는다.</li>
+<li>기존 상담 보관·삭제 정책은 90일이다. 수강 전환 시 필요한 자료는 안내·권한을 확인해 별도의 학습 기록으로 보관하고, 상담 정리가 진행 중인 학습 파일을 지우지 않게 한다. 학습·계정·수강 기록의 보관 기간은 별도로 정한다.</li>
+<li>현재 첨부 제한은 JPG·PNG·PDF 최대 3개, 파일당 5MB·전체 10MB다. 첫 버전에서 이 검증 규칙을 재사용하는 방향으로 시작하되, 실제 과제의 크기·형식에 맞는지는 파일럿에서 확인한다.</li>
+<li>공개 예시 데이터를 실제 계정 데이터로 복사해 운영하지 않는다. 예시와 실사용 기록을 분리한다.</li>
+</ul>
+</section>
+<section id="section-14" aria-labelledby="heading-14"><h2 id="heading-14">업무 상태와 구현 순서</h2>
+<h3>최소 상태 흐름</h3>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="업무 상태와 구현 순서 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">대상</th>
+<th scope="col">정상 흐름</th>
+<th scope="col">예외</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>상담</td>
+<td>접수 → 담당 지정 → 진단 진행 → 수강 제안 → 전환/종료</td>
+<td>자료 대기·응답 대기·보류</td>
+</tr>
+<tr>
+<td>진단·보고</td>
+<td>초안 → 검토 → 발행</td>
+<td>추가 근거 요청·새 버전으로 수정</td>
+</tr>
+<tr>
+<td>튜터 배정</td>
+<td>후보 → 제안 → 수락 → 배정</td>
+<td>거절·응답 없음·교체</td>
+</tr>
+<tr>
+<td>과제</td>
+<td>배정 → 제출 → 피드백 → 재제출 또는 새 과제</td>
+<td>지연·업로드 실패·검토 대기</td>
+</tr>
+<tr>
+<td>학습 목표</td>
+<td>미확인 → 연습 중 → 수정 답안에서 확인 → 새 과제에서 확인</td>
+<td>추가 연습·근거 부족</td>
+</tr>
+<tr>
+<td>수업·수강</td>
+<td>조건 확인 → 활성 → 수업 운영 → 완료</td>
+<td>일정 변경·일시 중지·중단</td>
+</tr>
+</tbody>
+</table></div></div>
+<p>상태 변경의 권한과 책임자를 상세 설계에서 각 동작에 연결한다. 처리 기한이 지난 업무는 자동 완료하지 않고 담당자의 지연 업무로 보인다.</p>
+<h3>개발을 시작할 때의 순서</h3>
+<ol>
+<li><strong>공통 기반:</strong> 계정·역할·자녀 연결·과목별 학습 공간·비공개 파일 권한. 네 역할로 같은 테스트 학생을 조회하고 타 학생 접근이 차단되는지 확인.</li>
+<li><strong>상담→계획:</strong> 어드민 접수/배정, 학생 자료/초기 과제, 선생님 진단·계획 발행, 학생·보호자 열람.</li>
+<li><strong>매칭→학습:</strong> 튜터 수락·수강 조건·일정·과제 제출·피드백·재제출·새 과제 확인.</li>
+<li><strong>보고→운영:</strong> 학부모 보고·대화·알림·지연/예외·수강/정산 기록·인수인계.</li>
+<li><strong>실제 파일럿:</strong> 확정된 과목·선생님·정책으로 실제 학생의 한 학습 주기를 운영하고 병목을 기록.</li>
+</ol>
+<p>각 단계는 앞 단계의 데이터와 권한을 재사용한다. 개발 기간·예산은 운영 조건과 화면 상세를 확정한 뒤 산정한다.</p>
+</section>
+<section id="section-15" aria-labelledby="heading-15"><h2 id="heading-15">출시 전 확인할 행동 시나리오</h2>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="출시 전 확인할 행동 시나리오 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">시나리오</th>
+<th scope="col">통과 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>네 역할의 한 주기</td>
+<td>접수에서 진단·배정·과제·피드백·재제출·새 문제 확인·보고까지 같은 학생/과목 기록으로 연결</td>
+</tr>
+<tr>
+<td>자료 없는 신청</td>
+<td>접수 가능, 초기 과제 배정 가능, 근거 확보 전 진단 확정 불가</td>
+</tr>
+<tr>
+<td>같은 점수·다른 약점</td>
+<td>두 학생의 답안 근거가 다르면 우선 연습·과제가 다르게 발행됨</td>
+</tr>
+<tr>
+<td>과목·기준 적용</td>
+<td>학생의 트랙·레벨·평가 유형·기준 버전을 확인하고 해당 기준으로 피드백</td>
+</tr>
+<tr>
+<td>초안·수정본 보존</td>
+<td>재제출 후에도 이전 답안·그 버전의 피드백·수정 이유 확인 가능</td>
+</tr>
+<tr>
+<td>참여와 개선 구분</td>
+<td>제출·출석만으로 학습 목표 달성 처리되지 않음, 새 문제 확인 결과를 별도 기록</td>
+</tr>
+<tr>
+<td>보호자 연결</td>
+<td>연결 확인 전 자녀 자료 접근 불가, 다른 자녀/가족의 URL·API·파일 접근 차단</td>
+</tr>
+<tr>
+<td>선생님 배정·교체</td>
+<td>담당 과목만 접근, 새 선생님은 인계 자료 열람, 이전 선생님 접근 회수</td>
+</tr>
+<tr>
+<td>발행 범위</td>
+<td>학생·보호자는 미발행 초안을 볼 수 없고 보고의 공개 대상이 적용됨</td>
+</tr>
+<tr>
+<td>실제 저장·재시도</td>
+<td>업로드/저장 실패 시 완료 표시 불가, 재시도에서 제출·발행·확인 중복 생성 없음</td>
+</tr>
+<tr>
+<td>일정·지연·부재</td>
+<td>시간대·중복 확인, 변경 통보, 미제출·피드백 지연·튜터 거절이 어드민 업무로 표시</td>
+</tr>
+<tr>
+<td>수강·비용</td>
+<td>상담과 수강 활성화 구분, 조건·동의·확인·변경 이력 보존, 확인 전 입금/환불 완료 표시 불가</td>
+</tr>
+<tr>
+<td>알림 실패</td>
+<td>학습 기록은 유지, 전달 실패 확인·후속 처리 가능, 민감한 본문 외부 노출 없음</td>
+</tr>
+<tr>
+<td>상담→학습 보관</td>
+<td>상담 정리 이후에도 정당하게 전환된 학습 기록이 정책에 따라 보존됨</td>
+</tr>
+<tr>
+<td>모바일·키보드 사용</td>
+<td>학생·보호자가 모바일에서 조회·제출·보고 확인 가능, 핵심 작업을 키보드로 수행 가능</td>
+</tr>
+</tbody>
+</table></div></div>
+<p>이 목록은 제품 출시를 위한 검증 기준이다. 실제 제품이 구현되거나 이 시나리오가 통과했다는 뜻은 아니다.</p>
+</section>
+<section id="section-16" aria-labelledby="heading-16"><h2 id="heading-16">파일럿에서 볼 지표</h2>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="파일럿에서 볼 지표 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">질문</th>
+<th scope="col">측정 방식</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>접수에서 학습 시작까지 어디서 막히는가?</td>
+<td>접수→자료 확보→진단 발행→수강 전환의 단계별 수·소요 시간</td>
+</tr>
+<tr>
+<td>계획을 실제로 실행하는가?</td>
+<td>활성 학생의 과제 제출·지연·재제출, 단계별 중단 이유</td>
+</tr>
+<tr>
+<td>피드백이 제때 전달되는가?</td>
+<td>제출→피드백 발행 시간, 약속된 기한 초과 건</td>
+</tr>
+<tr>
+<td>학습이 새 문제로 이어지는가?</td>
+<td>재점검을 수행한 목표 중 새 문제에서 기준 충족이 확인된 수와 전체 수</td>
+</tr>
+<tr>
+<td>보호자가 이해하고 지원할 수 있는가?</td>
+<td>보고 열람·질문·지원 요청 처리, 짧은 이해도 확인</td>
+</tr>
+<tr>
+<td>선생님과 운영자가 감당할 수 있는가?</td>
+<td>진단·첨삭·보고에 쓴 시간, 담당 인원·미처리 업무, 학생당 운영 비용</td>
+</tr>
+</tbody>
+</table></div></div>
+<p>초기 데이터 없이 목표 전환율·성적 향상률을 확정하지 않는다. 동일 과제의 수정 성과와 새로운 과제의 독립 수행을 따로 기록하고, 실제 시험 결과는 충분한 기간과 평가 맥락이 확보된 후 검토한다.</p>
+</section>
+<section id="section-17" aria-labelledby="heading-17"><h2 id="heading-17">상세 기획 전에 확정할 결정</h2>
+<div class="table-wrap"><p class="table-hint">표는 좌우로 스크롤해 읽을 수 있습니다.</p><div class="table-scroll" tabindex="0" role="region" aria-label="상세 기획 전에 확정할 결정 비교표 1"><table role="table">
+<thead>
+<tr>
+<th scope="col">결정</th>
+<th scope="col">초안의 제안 또는 필요한 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>첫 제공 과목·학생 범위</td>
+<td>확보된 선생님과 자료를 기준으로 IB 과목 1~2개·학년·트랙·레벨 결정</td>
+</tr>
+<tr>
+<td>수업 방식</td>
+<td>1:1 수업 + 과제·첨삭 가정. 첨삭 중심/그룹 모델 여부 확정 필요</td>
+</tr>
+<tr>
+<td>상품·비용</td>
+<td>진단의 유/무료, 기간·수업 횟수·첨삭 범위·응답 범위·가격·튜터 정산 조건</td>
+</tr>
+<tr>
+<td>매칭·대응 책임</td>
+<td>진단 담당·수업 담당 기준, 검토·보고 주기와 기한, 부재·교체 담당</td>
+</tr>
+<tr>
+<td>보호자·학생 정책</td>
+<td>연령별 가입·관계 확인, 공유 범위, 학생 단독 이용, 보호자 복수 연결 처리</td>
+</tr>
+<tr>
+<td>취소·변경·중단</td>
+<td>수업 변경 기한·결석/취소 차감·환불·일시 중지 조건</td>
+</tr>
+<tr>
+<td>자료·보관·공개</td>
+<td>평가 기준 검토, 자료 사용 권한, 학습 기록 보관 기간, 실제 사례 공개 동의</td>
+</tr>
+</tbody>
+</table></div></div>
+<p>위 결정이 정해지면 네 역할의 주요 화면과 필드·동작·오류 상태를 상세화할 수 있다. 다음 설계 단위는 학생 홈/과제/피드백, 학부모 현황/보고, 선생님 업무함/검토, 어드민 접수/매칭/지연 처리다.</p></section></article>
+<footer class="document-footer"><p>Ivycore 제품 기획 v0.1 · 검토용 초안<br>수업 방식·제공 과목·가격·공유 정책은 확정 전입니다.</p><a href="#top">처음으로 돌아가기 ↑</a></footer>
+</main></div><script>
+const printButton = document.getElementById('print-plan');
+printButton.hidden = false;
+printButton.addEventListener('click', () => window.print());
+const mobileContents = document.getElementById('mobile-contents');
+mobileContents.addEventListener('click', event => {
+  if (event.target.closest('a[href^="#section-"]')) mobileContents.open = false;
+});
+const links = [...document.querySelectorAll('.toc-list a')];
+const sections = [...document.querySelectorAll('.prose section')];
+let contentsFrame = 0;
+function updateContents() {
+  contentsFrame = 0;
+  const threshold = document.querySelector('.topbar').offsetHeight + 64;
+  const current = sections.filter(section => section.getBoundingClientRect().top <= threshold).pop();
+  links.forEach(link => {
+    if (current && link.getAttribute('href') === '#' + current.id) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+}
+function scheduleContents() {
+  if (!contentsFrame) contentsFrame = requestAnimationFrame(updateContents);
+}
+window.addEventListener('scroll', scheduleContents, {passive:true});
+window.addEventListener('resize', scheduleContents);
+updateContents();
+</script>
+</body></html>
